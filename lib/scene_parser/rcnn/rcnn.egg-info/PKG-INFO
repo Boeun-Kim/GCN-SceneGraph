@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: rcnn
+Version: 0.1
+Summary: object detection in pytorch
+Home-page: https://github.com/jwyang/graph-rcnn.pytorch
+Author: fmassa, jwyang
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
