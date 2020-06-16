@@ -1,3 +1,10 @@
+$$
+\lim_{x\to 0}{\frac{e^x-1}{2x}}
+\overset{\left[\frac{0}{0}\right]}{\underset{\mathrm{H}}{=}}
+\lim_{x\to 0}{\frac{e^x}{2}}={\frac{1}{2}}
+$$
+
+
 # Graph R-CNN for Scene Graph Generation (ECCV 2018) 
 
 이 페이지는 아래 논문을 리뷰하고 저자의 코드를 분석한 내용을 포함한다.
