@@ -72,6 +72,7 @@ https://drive.google.com/file/d/1GCWt_uDpr5ySAzTh2TFkF5nu-MrjRCad/view?usp=shari
 
 
 
+
 # Analysis of the code
 
 
@@ -214,6 +215,7 @@ self.training 태그를 통해 training과 test 프로세스에서 각각 retrun
 ```
 
 위 코드는 RePN 네트워크에서 relation 후보를 생성하는 부분이 구현된 것이다. 한 이미지에서 모든 객체 pair를 만들고, pair의 relatedness를 계산한 후 연관성이 큰 객체 pair만 남긴다. proposals_per_image가 모든 pair를 나타내는 것이고 self.relationshipness 함수에서는 pair의 두 객체 영역을 각각 kernel function을 통해 projection한 뒤 concat한다. kernel function은 두 층의 MLP로 구성된다. 논문에 해당하는 식은 아래와 같다.
+
 $$
 f(p^o_i, p^o_j) = <\phi(p^o_i), \psi(p^o_j)> \quad \quad  (2)
 $$
@@ -248,6 +250,7 @@ class GRCNN(nn.Module):
 ```
 
 GRCNN 클래스에는 Graph Convolution 과정이 구현되어있다. _GraphConvolutionLayer_Collect와 _GraphConvolutionLayer_Update는 각각 neighboring 노드로부터 정보를 가져오는 부분과 업데이트 하는 부분이다. forward 함수의 aggregation 부분에서는 모든 엣지 종류로부터 정보를 collect 한다 (source_rel_sub, source_rel_obj, source2obj_all ).
+
 $$
 z^o_i = \sigma(W^{skip}Z^o\alpha^{skip}+W^{sr}Z^r\alpha^{sr}+W^{or}Z^r\alpha^{or}  )    
 \quad \quad (8)
@@ -303,6 +306,7 @@ class _GraphConvolutionLayer_Update(nn.Module):
 ```
 
 _GraphConvolutionLayer_Collect에서는 주변 노드의 엣지로부터 정보를 가져온다. 모든 종류의 엣지에 대응하기 위해 self.collect_units를 5가지 종류 엣지에 대한 리스트로 만들고 unit_id를 통해 엣지 종류가 지정되면 해당 인덱스의 식을 사용하도록 하였다. _Collection_Unit 에 fully connected layer와 relu function을 거친 후 attention을 곱하고 normalize하는 과정이 구현되어있다. _GraphConvolutionLayer_Update에서는 주변 노드로부터 모은 정보를 타겟 노드에 업데이트한다. _Update_Unit에 타겟과 소스 정보를 합하는 부분이 구현되어 있다.
+
 $$
 \bold{z}^{(l+1)}_i = \sigma (WZ^{l}\bold{\alpha}_i) \quad \quad (5)
 $$
