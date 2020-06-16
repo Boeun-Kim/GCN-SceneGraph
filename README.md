@@ -220,7 +220,7 @@ self.training 태그를 통해 training과 test 프로세스에서 각각 retrun
 위 코드는 RePN 네트워크에서 relation 후보를 생성하는 부분이 구현된 것이다. 한 이미지에서 모든 객체 pair를 만들고, pair의 relatedness를 계산한 후 연관성이 큰 객체 pair만 남긴다. proposals_per_image가 모든 pair를 나타내는 것이고 self.relationshipness 함수에서는 pair의 두 객체 영역을 각각 kernel function을 통해 projection한 뒤 concat한다. kernel function은 두 층의 MLP로 구성된다. 논문에 해당하는 식은 아래와 같다.
 
 
-$$ f(p^o_i, p^o_j) = <\phi(p^o_i), \psi(p^o_j)> \quad \quad  (2) $$
+$$ f(p^o_i, p^o_j) = <\phi(p^o_i), \psi(p^o_j)> $$
 
 
 
